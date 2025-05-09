@@ -1,0 +1,24 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+polling_url: https://dbf.finalrewind.org/{{oebb_station}}.json?detailed=1&version=3&limit=15&admode=dep&hafas=%C3%96BB&platforms={{ platforms | url_encode }}
+polling_headers: ''
+id: 28271
+custom_fields:
+- keyname: oebb_station
+  field_type: string
+  name: OEBB Station
+  description: Station ID (UIC) or the exact name of the station as used on https://fahrplan.oebb.at . Replace Spaces with %20
+  placeholder: Wien%20Hbf or 8103000
+  help_text: List of Station IDs https://docs.google.com/spreadsheets/d/1rLbK56tCZPaO0ppQFufzfGc7yOdrRsRBHUrRZsL7rFs
+- keyname: platforms
+  field_type: string
+  optional: true
+  name: Filter Platforms
+  description: Optional. Comma separated, which platforms you'd like to show. By default all platforms are shown.
+  placeholder: '1,2,3,4'
+name: Austrian Train Departures
+refresh_interval: 15

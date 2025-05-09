@@ -1,0 +1,44 @@
+<div class="layout" layout--top>
+  <div class="stretch-y">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th><span class="title">Plan</span></th>
+          <th><span class="title">Ist</span></th>
+          <th><span class="title">Zug</span></th>
+          <th><span class="title">Ziel</span</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for departure in departures %}
+        <tr>
+          <td><span class="label">
+            {{ departure.scheduledTime | plus: trmnl.user.utc_offset | date: "%H:%M" }}</span</td>
+          <td>
+            {% if departure.isCancelled == true %}
+            <span class="label label--inverted">Ausfall</span>
+            {% else %}
+            {% if departure.delay != null and departure.delay != 0 %}
+
+            <span class="label">{{ departure.time | plus: trmnl.user.utc_offset | date: "%H:%M" }}</span>
+            {% else %}
+            <span class="label"></span>
+            {% endif %}
+            {% endif %}
+          </td>
+          <td><span class="label">{{ departure.train }}</span></td>
+          <td><span class="label">{{ departure.destination | truncate: 15 }} </span></td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="title_bar">
+  <img class="image" src="https://img.icons8.com/train"/>
+  <span class="title">{{trmnl.plugin_settings.custom_fields_values.db_station}} {{ trmnl.plugin_settings.custom_fields_values.oebb_station | url_decode }}</span>
+  <span class="instance">{{ "now" | date: '%s' | plus: trmnl.user.utc_offset | date: "%Y-%m-%d %H:%M" }}</span>
+</div>
