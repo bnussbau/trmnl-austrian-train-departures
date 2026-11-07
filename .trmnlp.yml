@@ -6,8 +6,9 @@ watch:
 
 # values of custom fields (defined in src/settings.yml)
 custom_fields:
-  oebb_station: Wien%20Hbf
+  oebb_station: Wien%20Hbf%20(Bahnsteige%201-2)
   platforms: "1,2"
+  walk_minutes: 5
 
 # override variables
 variables:
