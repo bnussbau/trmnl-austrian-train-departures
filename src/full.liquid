@@ -1,3 +1,6 @@
+{% assign walk_minutes = trmnl.plugin_settings.custom_fields_values.walk_minutes | default: 0 %}
+{% assign walk_seconds = walk_minutes | times: 60 %}
+{% assign cutoff = "now" | date: '%s' | plus: walk_seconds %}
 <div class="layout" layout--top>
   <div class="stretch">
 
@@ -13,6 +16,11 @@
       </thead>
       <tbody>
         {% for departure in departures %}
+        {% assign effective_time = departure.scheduledTime %}
+        {% if departure.time != null and departure.time != 0 %}
+        {% assign effective_time = departure.time %}
+        {% endif %}
+        {% if effective_time >= cutoff %}
         <tr>
           <td><span class="label">
             {{ departure.scheduledTime | plus: trmnl.user.utc_offset | date: "%H:%M" }}</span</td>
@@ -44,6 +52,7 @@
           </td>
 
         </tr>
+        {% endif %}
 
         {% endfor %}
       </tbody>
