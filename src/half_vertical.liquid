@@ -20,6 +20,7 @@
         {% assign effective_time = departure.time %}
         {% endif %}
         {% if effective_time >= cutoff %}
+        {% unless hide_metro == true and metro_lines contains departure.train %}
         {% assign cancelled = false %}
         {% if departure.isCancelled %}
         {% assign cancelled = true %}
@@ -49,6 +50,7 @@
             {% endif %}
           </td>
         </tr>
+        {% endunless %}
         {% endif %}
         {% endfor %}
       </tbody>

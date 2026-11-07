@@ -32,6 +32,12 @@ custom_fields:
   name: Walk Time (minutes)
   description: Minutes to add to the polling time before showing departures. Attention - This filters the retrieved departure list, so make sure you retrieve enough departures per poll.
   placeholder: '10'
+- keyname: hide_metro
+  field_type: boolean
+  optional: true
+  default: false
+  name: Hide Metro Lines
+  description: Hide Vienna metro departures (U1 through U6). This filters the retrieved departure list, so a metro-heavy stations can show fewer rows.
 - keyname: doesnt_matter
   name: About This Plugin
   category: travel

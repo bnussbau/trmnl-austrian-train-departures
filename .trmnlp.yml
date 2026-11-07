@@ -1,16 +1,12 @@
 ---
-# auto-reload when files change (`watch: false` to disable)
 watch:
-  - src
-  - .trmnlp.yml
-
-# values of custom fields (defined in src/settings.yml)
+- src
+- ".trmnlp.yml"
 custom_fields:
   oebb_station: Wien%20Hbf%20(Bahnsteige%201-2)
-  platforms: "1,2"
-  walk_minutes: 5
-
-# override variables
+  platforms: '1,2'
+  walk_minutes: '5'
+  hide_metro: 'false'
 variables:
   trmnl:
     user:
